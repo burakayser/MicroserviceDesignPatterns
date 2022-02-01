@@ -42,6 +42,11 @@ namespace Stock.API
                     {
                         e.ConfigureConsumer<OrderCreatedEventConsumer>(context);
                     });
+
+                    cfg.ReceiveEndpoint(RabbitMQSettings.STOCK_PAYMENT_FAILED_QUEUENAME, e =>
+                    {
+                        e.ConfigureConsumer<PaymentFailedEventConsumer>(context);
+                    });
                 });
             });
 
