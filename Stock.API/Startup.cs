@@ -10,7 +10,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Shared.Settings;
-using Stock.API.Consumers;
 using Stock.API.Models;
 using System;
 using System.Collections.Generic;
@@ -33,20 +32,9 @@ namespace Stock.API
         {
             services.AddMassTransit(x =>
             {
-                x.AddConsumersFromNamespaceContaining(typeof(OrderCreatedEventConsumer));
-
                 x.UsingRabbitMq((context, cfg) =>
                 {
                     cfg.Host(Configuration.GetConnectionString("RabbitMQ"));
-                    cfg.ReceiveEndpoint(RabbitMQSettings.STOCK_ORDERCREATEDEVENT_QUEUENAME, e =>
-                    {
-                        e.ConfigureConsumer<OrderCreatedEventConsumer>(context);
-                    });
-
-                    cfg.ReceiveEndpoint(RabbitMQSettings.STOCK_PAYMENT_FAILED_QUEUENAME, e =>
-                    {
-                        e.ConfigureConsumer<PaymentFailedEventConsumer>(context);
-                    });
                 });
             });
 
