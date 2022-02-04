@@ -21,7 +21,9 @@ namespace SagaStateMachineWorker.Models
 
             Event(() => OrderCreatedRequestEvent, y => y.CorrelateBy<int>(x => x.OrderId, z => z.Message.OrderId).SelectId(context => Guid.NewGuid()));
 
-            Initially(When(OrderCreatedRequestEvent).Then(context => {
+            Initially(
+                When(OrderCreatedRequestEvent)
+                .Then(context => {
                 context.Instance.BuyerId = context.Data.BuyerId;
                 context.Instance.OrderId = context.Data.OrderId;
                 context.Instance.CreateDate = DateTime.Now;
@@ -30,8 +32,12 @@ namespace SagaStateMachineWorker.Models
                 context.Instance.Payment.CVV = context.Data.Payment.CVV;
                 context.Instance.Payment.Expiration = context.Data.Payment.Expiration;
                 context.Instance.Payment.TotalPrice = context.Data.Payment.TotalPrice;
-            
-            }));
+                })
+                .Then(context => { Console.WriteLine($"OrderCreatedRequestEvent Before: { context.Instance }"); })
+                .Publish(context => new OrderCreatedEvent() { OrderItems = context.Data.OrderItems })
+                .TransitionTo(OrderCreated)
+                .Then(context => { Console.WriteLine($"OrderCreatedRequestEvent After: { context.Instance }"); })
+                );
 
 
 

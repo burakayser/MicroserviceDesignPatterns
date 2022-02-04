@@ -14,7 +14,7 @@ namespace SagaStateMachineWorker.Models
         public string BuyerId { get; set; }
         public int OrderId { get; set; }
         
-        public PaymentOwnedInstance Payment { get; set; }
+        public PaymentOwnedInstance Payment { get; set; } = new PaymentOwnedInstance();
 
         public DateTime CreateDate { get; set; }
 
@@ -25,7 +25,10 @@ namespace SagaStateMachineWorker.Models
             var sb = new StringBuilder();
 
             props.ToList().ForEach(p => {
-                sb.Append($"{p.Name} : {p.GetValue(this,null)}");
+
+                var value = p.GetValue(this,null);
+
+                sb.AppendLine($"{p.Name} : {p.GetValue(this,null)}");
             });
 
             return sb.ToString();

@@ -5,16 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.Events
+namespace Shared.Events.OrderCreated
 {
-    public class OrderCreatedEvent
+    public class OrderCreatedEvent : IOrderCreatedEvent
     {
-        public int OrderId { get; set; }
-
-        public string BuyerId { get; set; }
-
-        public PaymentMessage Payment { get; set; }
-
         public List<OrderItemMessage> OrderItems { get; set; } = new List<OrderItemMessage> { };
     }
 }
