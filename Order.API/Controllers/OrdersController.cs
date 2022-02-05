@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Order.API.DTOs;
 using Order.API.Models;
-using Shared.Events.OrderCreated;
+using Shared.Events.Order;
 using Shared.Settings;
 using System.Linq;
 using System.Threading.Tasks;

@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.Events
+namespace Shared.Events.Order
 {
-    public class StockNotReservedEvent
+    public class OrderFailedEvent : IOrderFailedEvent
     {
         public int OrderId { get; set; }
 
-        public string Message { get; set; }
+        public string Reason { get; set; }
     }
 }

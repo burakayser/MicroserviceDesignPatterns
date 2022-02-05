@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Payment.API.Consumers;
 using Shared.Settings;
 using System;
 using System.Collections.Generic;
@@ -31,11 +32,17 @@ namespace Payment.API
 
             services.AddMassTransit(x =>
             {
+                x.AddConsumer<StockReservedRequestEventConsumer>();
 
                 x.UsingRabbitMq((context, cfg) =>
                 {
                     cfg.Host(Configuration.GetConnectionString("RabbitMQ"));
-                    
+
+                    cfg.ReceiveEndpoint(RabbitMQSettings.PAYMENT_STOCK_RESERVED_REQUESTEVENT_QUEUENAME, configure =>
+                    {
+                        configure.ConfigureConsumer<StockReservedRequestEventConsumer>(context);
+                    });
+
                 });
             });
 

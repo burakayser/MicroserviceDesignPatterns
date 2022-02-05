@@ -5,13 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.Events.OrderCreated
+namespace Shared.Events.Stock
 {
-    public class OrderCreatedRequestEvent : IOrderCreatedRequestEvent
+    public  class StockReservedEvent : IStockReservedEvent
     {
+        public StockReservedEvent(Guid correlationId)
+        {
+            CorrelationId = correlationId;
+        }
+
         public int OrderId { get; set; }
-        public string BuyerId { get; set; }
-        public PaymentMessage Payment { get; set; }
+
         public List<OrderItemMessage> OrderItems { get; set; } = new List<OrderItemMessage>();
+
+        public Guid CorrelationId { get; }
     }
 }

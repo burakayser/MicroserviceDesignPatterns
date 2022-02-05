@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.Events
+namespace Shared.Events.Order
 {
-    public  class StockReservedEvent
+    public interface IOrderCreatedRequestEvent
     {
         public int OrderId { get; set; }
 
@@ -15,6 +15,6 @@ namespace Shared.Events
 
         public PaymentMessage Payment { get; set; }
 
-        public List<OrderItemMessage> OrderItems { get; set; } = new List<OrderItemMessage>();
+        public List<OrderItemMessage> OrderItems { get; set; }
     }
 }

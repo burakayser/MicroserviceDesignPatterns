@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.Events
+namespace Shared.Events.Order
 {
-    public class PaymentCompletedEvent
+    public interface IOrderFailedEvent
     {
         public int OrderId { get; set; }
 
-        public string BuyerId { get; set; }
-
-
+        public string Reason { get; set; }
     }
 }
