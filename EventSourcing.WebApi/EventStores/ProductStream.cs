@@ -8,6 +8,7 @@ namespace EventSourcing.WebApi.EventStores
     public class ProductStream : AbstractStream
     {
         public static string StreamName => "ProductStream";
+        public static string GroupName => "replay";
 
         public ProductStream(IEventStoreConnection eventStoreConnection) : base(StreamName, eventStoreConnection)
         {

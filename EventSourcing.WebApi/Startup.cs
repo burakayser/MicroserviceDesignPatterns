@@ -1,9 +1,12 @@
+using EventSourcing.WebApi.BackgroundServices;
 using EventSourcing.WebApi.EventStores;
+using EventSourcing.WebApi.Models;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -29,6 +32,10 @@ namespace EventSourcing.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("SqlCon"));
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -41,6 +48,8 @@ namespace EventSourcing.WebApi
             services.AddSingleton<ProductStream>();
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            services.AddHostedService<ProductReadModelBackgroundService>();
 
         }
 
