@@ -1,9 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceA.API", "Resiliency\ServiceA.API\ServiceA.API.csproj", "{9B2F91BC-97D4-4982-8A3A-16F09EB9B1A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceB.API", "Resiliency\ServiceB.API\ServiceB.API.csproj", "{36623DAF-15D8-40BC-9D8A-92F820A466CE}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B2F91BC-97D4-4982-8A3A-16F09EB9B1A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B2F91BC-97D4-4982-8A3A-16F09EB9B1A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B2F91BC-97D4-4982-8A3A-16F09EB9B1A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B2F91BC-97D4-4982-8A3A-16F09EB9B1A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36623DAF-15D8-40BC-9D8A-92F820A466CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36623DAF-15D8-40BC-9D8A-92F820A466CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36623DAF-15D8-40BC-9D8A-92F820A466CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36623DAF-15D8-40BC-9D8A-92F820A466CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
